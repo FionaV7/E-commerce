@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="sign up.css">
+</head>
+
+<body>
+  <div class="background">
+    <div class="frame">
+
+      <h1 class="sign-up">Sign Up</h1>
+
+      <form action="home.html" method="get">
+
+        <input type="text" placeholder="Full Name" required>
+
+        <input type="email" placeholder="Email Address demo@gmail.com" required>
+
+        <input type="tel" placeholder="Phone Number" pattern="[0-9]{10}" required>
+
+        <input type="password" placeholder="Password" required>
+
+        <button type="submit" class="log">Create Account</button>
+
+      </form>
+
+      <div class="divider">
+        <span>OR</span>
+      </div>
+
+      <div class="reg">
+        <p>Continue with</p>
+
+        <div class="platforms">
+          <a class="social google" href="https://accounts.google.com">Google</a>
+          <a class="social facebook" href="https://www.facebook.com/login/">Facebook</a>
+          <a class="social twitter" href="https://x.com/i/flow/login">Twitter (X)</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div id="toast"></div>
+
+</body>
+</html>
+<script>
+const toast = document.getElementById("toast");
+
+function showToast(message, type = "success") {
+  toast.textContent = message;
+  toast.className = "";
+  toast.classList.add(type === "success" ? "toast-success" : "toast-error");
+  toast.classList.add("show");
+
+  setTimeout(() => toast.classList.remove("show"), 3000);
+}
+
+document.querySelector("form").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const name = document.querySelector("input[type='text']").value.trim();
+  const email = document.querySelector("input[type='email']").value.trim();
+  const phone = document.querySelector("input[type='tel']").value.trim();
+  const password = document.querySelector("input[type='password']").value.trim();
+
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,}$/;
+
+  if (!name || !email || !phone || !password) {
+    showToast("All fields are required", "error");
+    return;
+  }
+
+  if (!emailRegex.test(email)) {
+    showToast("Invalid email format (example: user@gmail.com)", "error");
+    return;
+  }
+
+  if (!/^[0-9]{10}$/.test(phone)) {
+    showToast("Phone number must be exactly 10 digits", "error");
+    return;
+  }
+
+  if (!passwordRegex.test(password)) {
+    showToast("Password must include uppercase, lowercase & number", "error");
+    return;
+  }
+
+  let users = JSON.parse(localStorage.getItem("nightshine_users")) || [];
+
+  if (users.some(user => user.email === email)) {
+    showToast("Email already registered. Please log in.", "error");
+    return;
+  }
+
+  /* ✅ THIS IS WHERE password IS STORED */
+  const newUser = {
+    name,
+    email,
+    phone,
+    password,
+    createdAt: new Date().toISOString()
+  };
+
+  users.push(newUser);
+  localStorage.setItem("nightshine_users", JSON.stringify(users));
+  localStorage.setItem("nightshine_current_user", JSON.stringify(newUser));
+
+  showToast("Account created successfully!");
+
+  setTimeout(() => {
+    window.location.href = "home.html";
+  }, 1500);
+});
+</script>

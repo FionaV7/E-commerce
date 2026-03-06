@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Night Shine</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="home style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+
+<header>
+  <div class="nav-bar">
+    <div class="logo-container">
+      <img src="1.png" alt="Night Shine Logo">
+      <span class="logo-text">Night Shine</span>
+    </div>
+    <nav class="nav-right">
+
+  <!-- Account -->
+  <a href="account.html" title="Account">
+    <i class="fa-solid fa-user"></i>
+  </a>
+
+  <!-- Home -->
+  <a href="home.html" title="Home">
+    <i class="fa-solid fa-house"></i>
+  </a>
+
+  <!-- Shop -->
+  <a href="shop.html" title="Shop">
+    <i class="fa-solid fa-store"></i>
+  </a>
+
+  <!-- Blog -->
+  <a href="blog.html" title="Blog">
+    <i class="fa-solid fa-pen-nib"></i>
+  </a>
+
+  <!-- Cart -->
+  <a href="cart.html" class="cart-icon position-relative" title="Cart">
+    <i class="fa-solid fa-bag-shopping"></i>
+    <span class="cart-badge">0</span>
+  </a>
+
+  <!-- Contact -->
+  <a href="contact.html" title="Contact">
+    <i class="fa-solid fa-envelope"></i>
+  </a>
+
+</nav>
+
+  </div>
+</header>
+
+<section class="slider-section">
+  <div id="collectionCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000" data-bs-wrap="true" data-bs-pause="none">
+    <div class="carousel-indicators">
+      <button data-bs-target="#collectionCarousel" data-bs-slide-to="0" class="active"></button>
+      <button data-bs-target="#collectionCarousel" data-bs-slide-to="1"></button>
+      <button data-bs-target="#collectionCarousel" data-bs-slide-to="2"></button>
+      <button data-bs-target="#collectionCarousel" data-bs-slide-to="3"></button>
+      <button data-bs-target="#collectionCarousel" data-bs-slide-to="4"></button>
+    </div>
+
+    <div class="carousel-inner">
+
+      <div class="carousel-item active">
+        <div class="slide">
+          <div class="slide-left">
+            <h1>Seasonal<br>Collections</h1>
+            <button class="view-btn" onclick="goToCollection('seasonal')">View Collection &gt;</button>
+          </div>
+          <div class="slide-right">
+            <div class="fixed-media">
+              <img src="https://www.kalyanjewellers.net/blog/wp-content/uploads/2024/03/daily-wear-diamond.jpg">
+            </div>
+            <div class="floating-media">
+              <img src="https://www.regaljewellers.net/wp-content/uploads/2025/01/tvisa-diamond-collections-by-regal-jewellers3.jpg">
+            </div>
+            <div class="floating-media-1">
+              <img src="https://i.ytimg.com/vi/WWfTc1sbuGc/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBPrkEEBQHzs8Vg246pKqZ0EDxjGA">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="slide">
+          <div class="slide-left">
+            <h1>Wedding<br>Collections</h1>
+            <button class="view-btn" onclick="goToCollection('wedding')">Explore &gt;</button>
+          </div>
+          <div class="slide-right">
+            <div class="fixed-media">
+              <img src="https://www.vummidi.com/blog/wp-content/uploads/2024/08/Guttapusalu-Heritage-Set.jpg">
+            </div>
+            <div class="floating-media">
+              <img src="https://i.etsystatic.com/53137088/r/il/eb4a5b/6681950673/il_fullxfull.6681950673_33hj.jpg">
+            </div>
+            <div class="floating-media-1">
+              <img src="https://www.sneharateria.com/cdn/shop/articles/theweddingcorp_1200x1200.png?v=1676527615">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="slide">
+          <div class="slide-left">
+            <h1>Casual<br>Collections</h1>
+            <button class="view-btn" onclick="goToCollection('daily')">Shop Now &gt;</button>
+          </div>
+          <div class="slide-right">
+            <div class="fixed-media">
+              <img src="https://i.ytimg.com/vi/EAB8C4okLiM/maxresdefault.jpg">
+            </div>
+            <div class="floating-media">
+              <img src="https://cdn.shopify.com/s/files/1/0613/1400/7297/files/Beyond_Chains__Daily_Wear_Jewellery_You_ll_Love_1.jpg?v=1758115377">
+            </div>
+            <div class="floating-media-1">
+              <img src="https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/63935abfa1d87fd53a1065531ec0aa85.jpg?imageMogr2/auto-orient%7CimageView2/2/w/800/q/70/format/webp">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="slide">
+          <div class="slide-left">
+            <h1>Pearl<br>Collections</h1>
+            <button class="view-btn" onclick="goToCollection('pearl')">Limited Availability &gt;</button>
+          </div>
+          <div class="slide-right">
+            <div class="fixed-media">
+              <img src="https://m.media-amazon.com/images/I/61uU4pj8GaL._AC_UY1100_.jpg">
+            </div>
+            <div class="floating-media">
+              <img src="https://www.giva.co/cdn/shop/files/ER0150_PD0179_5.jpg">
+            </div>
+            <div class="floating-media-1">
+              <img src="https://clara.in/cdn/shop/files/QQUyYPl_973cedcb-6d24-4d68-8da1-2519e05ab32b_1024x1024.jpg?v=1744795616">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="slide">
+          <div class="slide-left">
+            <h1>Rose Gold<br>Collections</h1>
+            <button class="view-btn" onclick="goToCollection('rose')">Take a Look &gt;</button>
+          </div>
+          <div class="slide-right">
+            <div class="fixed-media">
+              <img src="https://priyaasi.com/cdn/shop/products/NL-PR-10517.M_2_1800x1800.jpg?v=1627553413">
+            </div>
+            <div class="floating-media">
+              <img src="https://images.meesho.com/images/products/379419887/l8udt_512.webp?width=512">
+            </div>
+            <div class="floating-media-1">
+              <img src="https://img.tatacliq.com/images/i19//437Wx649H/MP000000023200470_437Wx649H_202408041136251.jpeg">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="carousel-control-prev" data-bs-target="#collectionCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" data-bs-target="#collectionCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+</section>
+
+<section class="top-sales">
+
+<h2 class="section-title">Top Sellers</h2>
+
+<h3 class="sub-title">Branded</h3>
+<div class="products-grid">
+
+  <a class="product-card" data-id="ring9" onclick="openHomeProduct(this)">
+    <span class="badge best">BEST SELLER</span>
+    <img src="ring.webp">
+    <h3>Diamond Ring</h3>
+    <p class="category">Ring · Branded</p>
+    <div class="rating">★ 4.8 <span>(212)</span></div>
+    <div class="price">₹ 48,999</div>
+  </a>
+
+  <a class="product-card" data-id="necklace9" onclick="openHomeProduct(this)">
+    <img src="necklace set.webp">
+    <h3>Necklace Set</h3>
+    <p class="category">Necklace · Branded</p>
+    <div class="rating">★ 4.7 <span>(164)</span></div>
+    <div class="price">₹ 1,12,000</div>
+  </a>
+
+  <a class="product-card" data-id="necklace10" onclick="openHomeProduct(this)">
+    <span class="badge new">NEW</span>
+    <img src="https://kritjewels.com/wp-content/uploads/2023/10/IMG_20230904_231920-scaled.jpg">
+    <h3>Diamond Pendant</h3>
+    <p class="category">Pendant · Branded</p>
+    <div class="rating">★ 4.6 <span>(97)</span></div>
+    <div class="price">₹ 35,999</div>
+  </a>
+
+  <a class="product-card" data-id="bangle9" onclick="openHomeProduct(this)">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_x2M7mGbJXpUWrmRXbYzY_cHS3HVYzFdMcw&s">
+    <h3>Gold Bangles</h3>
+    <p class="category">Bangles · Branded</p>
+    <div class="rating">★ 4.9 <span>(301)</span></div>
+    <div class="price">₹ 1,45,000</div>
+  </a>
+
+</div>
+
+<h3 class="sub-title">Non-Branded</h3>
+<div class="products-grid">
+
+  <a class="product-card" data-id="earring9" onclick="openHomeProduct(this)">
+    <span class="badge new">NEW</span>
+    <img src="gold earring.webp">
+    <h3>Gold Earrings</h3>
+    <p class="category">Earring · Non-Branded</p>
+    <div class="rating">★ 4.4 <span>(89)</span></div>
+    <div class="price">₹ 29,499</div>
+  </a>
+
+  <a class="product-card" data-id="bracelet9" onclick="openHomeProduct(this)">
+    <img src="gold bracelet.webp">
+    <h3>Gold Bracelet</h3>
+    <p class="category">Bracelet · Non-Branded</p>
+    <div class="rating">★ 4.3 <span>(54)</span></div>
+    <div class="price">₹ 18,750</div>
+  </a>
+
+  <a class="product-card" data-id="necklace11" onclick="openHomeProduct(this)">
+    <img src="https://m.media-amazon.com/images/I/61FVZxlMlTL._AC_UY1100_.jpg">
+    <h3>Daily Wear Chain</h3>
+    <p class="category">Chain · Non-Branded</p>
+    <div class="rating">★ 4.2 <span>(71)</span></div>
+    <div class="price">₹ 12,999</div>
+  </a>
+
+  <a class="product-card" data-id="earring10" onclick="openHomeProduct(this)">
+    <span class="badge best">BEST SELLER</span>
+    <img src="https://img.tatacliq.com/images/i13/437Wx649H/MP000000019206250_437Wx649H_202309131427371.jpeg">
+    <h3>Stud Earrings</h3>
+    <p class="category">Stud · Non-Branded</p>
+    <div class="rating">★ 4.5 <span>(140)</span></div>
+    <div class="price">₹ 9,499</div>
+  </a>
+
+</div>
+
+</section>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-left">
+      <img src="1.png" alt="Night Shine">
+      <span>Night Shine</span>
+    </div>
+    <div class="footer-right">
+      <p>📞 +91 98765 43210</p>
+      <p>✉ support@nightshine.com</p>
+    </div>
+  </div>
+</footer>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+
+
+function updateCartBadge(){
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+  const totalItems = cart.length + wishlist.length;
+  const badge = document.querySelector(".cart-badge");
+
+  if(!badge) return;
+
+  if(totalItems === 0){
+    badge.style.display = "none";
+  } else {
+    badge.style.display = "flex";
+    badge.textContent = totalItems;
+  }
+}
+
+updateCartBadge();
+
+function goToCollection(collection){
+  window.location.href = `shop.html?collection=${collection}`;
+}
+
+function openHomeProduct(card){
+  const id = card.dataset.id;
+  window.location.href = `product.html?id=${id}`;
+}
+
+  function goToCollection(collection){
+    window.location.href = `shop.html?collection=${collection}`;
+  }
+
+  function openHomeProduct(card){
+    const id = card.dataset.id;
+    window.location.href = `product.html?id=${id}`;
+
+  window.addEventListener("storage", updateCartBadge);
+
+  }
+</script>
+
+</body>
+</html>

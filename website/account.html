@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Account | Night Shine</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="account.css">
+</head>
+
+<body>
+
+<header>
+  <div class="nav-bar">
+    <a href="home.html" class="logo-left">
+      <img src="1.png">
+      <span class="logo-text">Night Shine</span>
+    </a>
+
+    <nav class="nav-right">
+      <a href="home.html"><i class="fa-solid fa-house"></i></a>
+      <a href="shop.html"><i class="fa-solid fa-store"></i></a>
+      <a href="blog.html"><i class="fa-solid fa-pen-nib"></i></a>
+      <a href="contact.html"><i class="fa-solid fa-envelope"></i></a>
+    </nav>
+  </div>
+</header>
+
+<div class="back-wrapper">
+  <button class="back-btn" onclick="history.back()">&#8592;</button>
+</div>
+
+<main class="page">
+
+  <div class="account-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-top">My Account</div>
+
+      <button class="side-link active" onclick="showSection('profile')">
+        <i class="fa-solid fa-user"></i> Personal Details
+      </button>
+      <button class="side-link" onclick="showSection('orders')">
+        <i class="fa-solid fa-box"></i> My Orders
+      </button>
+      <button class="side-link" onclick="showSection('policy')">
+        <i class="fa-solid fa-scale-balanced"></i> Policies
+      </button>
+
+      <div class="side-divider"></div>
+
+      <button class="side-link logout" onclick="logout()">
+        <i class="fa-solid fa-right-from-bracket"></i> Logout
+      </button>
+      <button class="side-link delete" onclick="deleteAccount()">
+        <i class="fa-solid fa-trash"></i> Delete Account
+      </button>
+    </aside>
+
+    <section class="content">
+
+      <div id="profile" class="section active">
+        <label class="avatar">
+          <input type="file" hidden id="profileImage">
+          <img id="preview">
+        </label>
+        <span class="add-picture">ADD PICTURE</span>
+
+        <div class="form">
+          <input id="name" placeholder="Full Name">
+          <input id="phone" placeholder="Phone Number">
+          <input id="email" placeholder="Email" disabled>
+          <input id="languages" placeholder="Languages Spoken">
+        </div>
+
+        <button class="save-btn" onclick="saveProfile()">Save Details</button>
+      </div>
+
+      <!-- ORDERS -->
+      <div id="orders" class="section">
+        <h3>My Orders</h3>
+        <div id="orderList"></div>
+      </div>
+
+      <!-- POLICY -->
+      <div id="policy" class="section policy">
+
+        <h4>Privacy Policy</h4>
+        <p>
+          Night Shine values customer privacy and ensures that all personal
+          information such as contact details, profile data, and transaction
+          records are securely stored. User data is encrypted and never shared
+          with third parties without consent.
+        </p>
+
+        <h4>Order & Payment Policy</h4>
+        <p>
+          All purchases made on Night Shine are processed securely. Orders are
+          generated only after successful payment and are reflected in the
+          “My Orders” section. Payment records are maintained for reference.
+        </p>
+
+        <h4>Returns & Refunds</h4>
+        <p>
+          Refunds and exchanges are subject to Night Shine’s return policy.
+          Items once delivered may not be eligible for cancellation unless
+          explicitly stated. Refund approvals depend on verification.
+        </p>
+
+        <h4>Account Usage Rules</h4>
+        <p>
+          Users are responsible for maintaining accurate account details.
+          Any misuse, unauthorized access, or suspicious activity may lead to
+          account suspension or permanent deactivation.
+        </p>
+
+        <h4>Legal Compliance</h4>
+        <p>
+          Night Shine operates in compliance with applicable consumer protection,
+          e-commerce, and data privacy laws. Continued use of the platform
+          implies acceptance of all stated policies and regulations.
+        </p>
+
+      </div>
+
+    </section>
+
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-left">
+      <img src="1.png">
+      <span>Night Shine</span>
+    </div>
+    <div class="footer-right">
+      <p>📞 +91 98765 43210</p>
+      <p>✉ support@nightshine.com</p>
+    </div>
+  </div>
+</footer>
+
+<div id="toast"></div>
+
+<script>
+const user = JSON.parse(localStorage.getItem("nightshine_current_user"));
+if(!user) location.href="login.html";
+
+
+function showToast(msg){
+  const t=document.getElementById("toast");
+  t.textContent=msg;
+  t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"),3000);
+}
+
+function showSection(id){
+  document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+  document.querySelectorAll(".side-link").forEach(b=>b.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  event.currentTarget.classList.add("active");
+}
+
+/* LOAD USER */
+name.value=user.name||"";
+phone.value=user.phone||"";
+email.value=user.email||"";
+languages.value=user.languages||"";
+
+/* SAVE PROFILE */
+function saveProfile(){
+  user.name=name.value;
+  user.phone=phone.value;
+  user.languages=languages.value;
+  localStorage.setItem("nightshine_current_user",JSON.stringify(user));
+  showToast("Profile saved");
+}
+
+/* IMAGE */
+profileImage.onchange=e=>{
+  const r=new FileReader();
+  r.onload=()=>{
+    preview.src=r.result;
+    user.avatar=r.result;
+    localStorage.setItem("nightshine_current_user",JSON.stringify(user));
+    showToast("Picture updated");
+  };
+  r.readAsDataURL(e.target.files[0]);
+};
+if(user.avatar) preview.src=user.avatar;
+
+/* ORDERS WITH REMOVE ❌ */
+let orders = JSON.parse(localStorage.getItem("nightshine_orders")) || [];
+
+function renderOrders(){
+  orderList.innerHTML = orders.length
+  ? orders.map((o,i)=>`
+    <div class="order-card">
+      <button class="remove-order" onclick="removeOrder(${i})">✕</button>
+      <img src="${o.image}">
+      <div>
+        <b>${o.name}</b>
+        <p>Qty: ${o.qty}</p>
+        <p>₹ ${o.amount}</p>
+        <span>${o.date}</span>
+      </div>
+    </div>
+  `).join("")
+  : "<p>No orders yet</p>";
+}
+renderOrders();
+
+function removeOrder(index){
+  orders.splice(index,1);
+  localStorage.setItem("nightshine_orders",JSON.stringify(orders));
+  renderOrders();
+  showToast("Order removed");
+}
+
+/* AUTH ACTIONS */
+function logout(){
+  localStorage.removeItem("nightshine_current_user");
+  showToast("Logged out");
+  setTimeout(()=>location.href="index.html",1200);
+}
+function deleteAccount(){
+  localStorage.clear();
+  location.href="index.html";
+}
+</script>
+
+</body>
+</html>

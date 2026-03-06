@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop | Night Shine</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shop.css">
+</head>
+
+<body>
+
+<header>
+  <div class="nav-bar">
+    <a href="home.html" class="logo-left">
+      <img src="1.png" alt="logo">
+      <span class="logo-text">Night Shine</span>
+    </a>
+
+    <nav class="nav-right">
+      <a href="home.html" title="Home"><i class="fa-solid fa-house"></i></a>
+      <a href="shop.html" title="Shop"><i class="fa-solid fa-store"></i></a>
+      <a href="blog.html" title="Blog"><i class="fa-solid fa-pen-nib"></i></a>
+      <a href="contact.html" title="Contact"><i class="fa-solid fa-envelope"></i></a>
+    </nav>
+  </div>
+</header>
+<div class="shop-back">
+  <button class="back-btn" onclick="history.back()">&#8592;</button>
+</div>
+
+
+<main class="shop-wrapper">
+
+<aside class="sidebar">
+<div class="category">
+<h4>Category</h4>
+<ul>
+<li onclick="filterCategory('ring')">Rings</li>
+<li onclick="filterCategory('necklace')">Necklaces</li>
+<li onclick="filterCategory('earring')">Earrings</li>
+<li onclick="filterCategory('bangle')">Bangles</li>
+<li onclick="filterCategory('bracelet')">Bracelets</li>
+</ul>
+</div>
+
+<div class="category">
+<h4 onclick="toggleCollection()">Collections ▸</h4>
+<ul id="collectionMenu">
+<li onclick="filterCollection('seasonal')">Seasonal</li>
+<li onclick="filterCollection('daily')">Daily Wear</li>
+<li onclick="filterCollection('wedding')">Wedding</li>
+<li onclick="filterCollection('rose')">Rose Gold</li>
+<li onclick="filterCollection('pearl')">Pearl</li>
+</ul>
+</div>
+</aside>
+
+<section class="shop-content">
+<div class="shop-top">
+<input type="text" id="searchInput" placeholder="Search jewellery...">
+</div>
+
+<div class="products-grid" id="products">
+
+<!-- ================== RINGS (8) ================== -->
+<div class="product-card" data-category="ring" data-collection="wedding" data-id="ring1" onclick="openProduct(this)">
+<img src="imagering1.jpg">
+<h5>Royal Wedding Ring</h5>
+<div class="rating">★★★★★</div>
+<p class="price">₹2,500</p>
+</div>
+
+<div class="product-card" data-category="ring" data-collection="rose" data-id="ring2" onclick="openProduct(this)">
+<img src="imagering2.webp">
+<h5>Rose Gold Ring</h5>
+<div class="rating">★★★★☆</div>
+<p class="price">₹1,900</p>
+</div>
+
+<div class="product-card" data-category="ring" data-collection="daily" data-id="ring3" onclick="openProduct(this)">
+<img src="imagering3.jpg">
+<h5>Classic Gold Band</h5>
+<div class="rating">★★★★☆</div>
+<p class="price">₹1,700</p>
+</div>
+
+<div class="product-card" data-category="ring" data-collection="wedding" data-id="ring4" onclick="openProduct(this)">
+<img src="imagering4.jpg">
+<h5>Diamond Cut Ring</h5>
+<div class="rating">★★★★★</div>
+<p class="price">₹3,200</p>
+</div>
+
+<div class="product-card" data-category="ring" data-collection="wedding" data-id="ring5" onclick="openProduct(this)">
+<img src="imagering5.jpg">
+<h5>Vintage Royal Ring</h5>
+<div class="rating">★★★★☆</div>
+<p class="price">₹2,800</p>
+</div>
+
+<div class="product-card" data-category="ring" data-collection="pearl" data-id="ring6" onclick="openProduct(this)">
+<img src="imagering6.jpg">
+<h5>Pearl Crown Ring</h5>
+<div class="rating">★★★★★</div>
+<p class="price">₹2,300</p>
+</div>
+
+<div class="product-card" data-category="ring" data-collection="wedding" data-id="ring7" onclick="openProduct(this)">
+<img src="imagering7.jpg">
+<h5>Engagement Ring</h5>
+<div class="rating">★★★★★</div>
+<p class="price">₹3,500</p>
+</div>
+
+<div class="product-card" data-category="ring" data-collection="daily" data-id="ring8" onclick="openProduct(this)">
+<img src="imagering8.webp">
+<h5>Modern Gold Ring</h5>
+<div class="rating">★★★★☆</div>
+<p class="price">₹2,100</p>
+</div>
+
+<div class="product-card" data-category="ring" data-collection="wedding" data-id="ring9" onclick="openProduct(this)">
+  <img src="ring.webp">
+  <h5>Diamond Ring</h5>
+  <div class="rating">★★★★★</div>
+  <p class="price">₹48,999</p>
+</div>
+
+
+<!-- ================== NECKLACES (8) ================== -->
+<div class="product-card" data-category="necklace" data-collection="wedding" data-id="necklace1" onclick="openProduct(this)">
+<img src="imagenecklace1.webp">
+<h5>Royal Bridal Necklace</h5>
+<div class="rating">★★★★★</div>
+<p class="price">₹6,500</p>
+</div>
+
+<div class="product-card" data-category="necklace" data-collection="pearl" data-id="necklace2" onclick="openProduct(this)">
+<img src="imagenecklace2.jpg">
+<h5>Pearl Necklace</h5>
+<div class="rating">★★★★☆</div>
+<p class="price">₹3,200</p>
+</div>
+
+<div class="product-card" data-category="necklace" data-collection="daily" data-id="necklace3" onclick="openProduct(this)">
+<img src="imagenecklace3.webp">
+<h5>Daily Gold Chain</h5>
+<div class="rating">★★★★☆</div>
+<p class="price">₹1,900</p>
+</div>
+
+<div class="product-card" data-category="necklace" data-collection="wedding" data-id="necklace4" onclick="openProduct(this)">
+<img src="imagenecklace4.jpg">
+<h5>Wedding Choker</h5>
+<div class="rating">★★★★★</div>
+<p class="price">₹4,800</p>
+</div>
+
+<div class="product-card" data-category="necklace" data-collection="rose" data-id="necklace5" onclick="openProduct(this)">
+<img src="imagenecklace5.jpg">
+<h5>Rose Gold Pendant</h5>
+<div class="rating">★★★★☆</div>
+<p class="price">₹2,100</p>
+</div>
+
+<div class="product-card" data-category="necklace" data-collection="antique" data-id="necklace6" onclick="openProduct(this)">
+<img src="imagenecklace6.webp">
+<h5>Antique Necklace</h5>
+<div class="rating">★★★★☆</div>
+<p class="price">₹3,900</p>
+</div>
+
+<div class="product-card" data-category="necklace" data-collection="daily" data-id="necklace7" onclick="openProduct(this)">
+<img src="imagenecklace7.webp">
+<h5>Layered Necklace</h5>
+<div class="rating">★★★★☆</div>
+<p class="price">₹2,700</p>
+</div>
+
+<div class="product-card" data-category="necklace" data-collection="wedding" data-id="necklace8" onclick="openProduct(this)">
+<img src="imagenecklace8.jpg">
+<h5>Temple Necklace</h5>
+<div class="rating">★★★★★</div>
+<p class="price">₹5,200</p>
+</div>
+
+<div class="product-card" data-category="necklace" data-collection="wedding" data-id="necklace9" onclick="openProduct(this)">
+  <img src="necklace set.webp">
+  <h5>Necklace Set</h5>
+  <div class="rating">★★★★☆</div>
+  <p class="price">₹1,12,000</p>
+</div>
+
+<div class="product-card" data-category="necklace" data-collection="rose" data-id="necklace10" onclick="openProduct(this)">
+  <img src="https://kritjewels.com/wp-content/uploads/2023/10/IMG_20230904_231920-scaled.jpg">
+  <h5>Diamond Pendant</h5>
+  <div class="rating">★★★★☆</div>
+  <p class="price">₹35,999</p>
+</div>
+
+<div class="product-card" data-category="necklace" data-collection="daily" data-id="necklace11" onclick="openProduct(this)">
+  <img src="https://m.media-amazon.com/images/I/61FVZxlMlTL._AC_UY1100_.jpg">
+  <h5>Daily Wear Chain</h5>
+  <div class="rating">★★★★☆</div>
+  <p class="price">₹12,999</p>
+</div>
+
+<!-- ================== EARRINGS (8) ================== -->
+<div class="product-card" data-category="earring" data-collection="pearl" data-id="earring1" onclick="openProduct(this)">
+<img src="imageearring1.webp">
+<h5>Pearl Drop Earrings</h5>
+<div class="rating">★★★★★</div>
+<p class="price">₹1,200</p>
+</div>
+
+<div class="product-card" data-category="earring" data-collection="daily" data-id="earring2" onclick="openProduct(this)">
+<img src="imageearring2.jpeg">
+<h5>Daily Gold Studs</h5>
+<div class="rating">★★★★☆</div>
+<p class="price">₹850</p>
+</div>
+
+<div class="product-card" data-category="earring" data-collection="rose" data-id="earring3" onclick="openProduct(this)">
+<img src="imageearring3.webp">
+<h5>Rose Gold Hoops</h5>
+<div class="rating">★★★★☆</div>
+<p class="price">₹1,600</p>
+</div>
+
+<div class="product-card" data-category="earring" data-collection="wedding" data-id="earring4" onclick="openProduct(this)">
+<img src="imageearring4.webp">
+<h5>Bridal Chandbali</h5>
+<div class="rating">★★★★★</div>
+<p class="price">₹2,900</p>
+</div>
+
+<div class="product-card" data-category="earring" data-collection="daily" data-id="earring5" onclick="openProduct(this)">
+<img src="imageearring5.webp">
+<h5>Minimal Stud Earrings</h5>
+<div class="rating">★★★☆☆</div>
+<p class="price">₹750</p>
+</div>
+
+<div class="product-card" data-category="earring" data-collection="seasonal" data-id="earring6" onclick="openProduct(this)">
+<img src="imageearring6.webp">
+<h5>Designer Earrings</h5>
+<div class="rating">★★★★☆</div>
+<p class="price">₹2,200</p>
+</div>
+
+<div class="product-card" data-category="earring" data-collection="wedding" data-id="earring7" onclick="openProduct(this)">
+<img src="imageearring7.jpg">
+<h5>Gold Jhumkas</h5>
+<div class="rating">★★★★★</div>
+<p class="price">₹2,600</p>
+</div>
+
+<div class="product-card" data-category="earring" data-collection="pearl" data-id="earring8" onclick="openProduct(this)">
+<img src="imageearring8.webp">
+<h5>Pearl Stud Earrings</h5>
+<div class="rating">★★★★☆</div>
+<p class="price">₹1,100</p>
+</div>
+
+<div class="product-card" data-category="earring" data-collection="daily" data-id="earring9" onclick="openProduct(this)">
+  <img src="gold earring.webp">
+  <h5>Gold Earrings</h5>
+  <div class="rating">★★★★☆</div>
+  <p class="price">₹29,499</p>
+</div>
+
+<div class="product-card" data-category="earring" data-collection="daily" data-id="earring10" onclick="openProduct(this)">
+  <img src="https://img.tatacliq.com/images/i13/437Wx649H/MP000000019206250_437Wx649H_202309131427371.jpeg">
+  <h5>Stud Earrings</h5>
+  <div class="rating">★★★★☆</div>
+  <p class="price">₹9,499</p>
+</div>
+
+<!-- ================== BANGLES (8) ================== -->
+<div class="product-card" data-category="bangle" data-collection="seasonal" data-id="bangle1" onclick="openProduct(this)">
+<img src="imagebangle1.jpg">
+<h5>Festival Bangles</h5>
+<div class="rating">★★★★☆</div>
+<p class="price">₹3,200</p>
+</div>
+
+<div class="product-card" data-category="bangle" data-collection="wedding" data-id="bangle2" onclick="openProduct(this)">
+<img src="imagebangle2.webp">
+<h5>Bridal Kada Set</h5>
+<div class="rating">★★★★★</div>
+<p class="price">₹4,800</p>
+</div>
+
+<div class="product-card" data-category="bangle" data-collection="daily" data-id="bangle3" onclick="openProduct(this)">
+<img src="imagebangle3.webp">
+<h5>Simple Gold Bangles</h5>
+<div class="rating">★★★★☆</div>
+<p class="price">₹2,100</p>
+</div>
+
+<div class="product-card" data-category="bangle" data-collection="rose" data-id="bangle4" onclick="openProduct(this)">
+<img src="imagebangle4.jpg">
+<h5>Rose Pattern Bangles</h5>
+<div class="rating">★★★★☆</div>
+<p class="price">₹2,900</p>
+</div>
+
+<div class="product-card" data-category="bangle" data-collection="pearl" data-id="bangle5" onclick="openProduct(this)">
+<img src="imagebangle5.webp">
+<h5>Pearl Embedded Bangles</h5>
+<div class="rating">★★★★★</div>
+<p class="price">₹3,600</p>
+</div>
+
+<div class="product-card" data-category="bangle" data-collection="daily" data-id="bangle6" onclick="openProduct(this)">
+<img src="imagebangle6.webp">
+<h5>Slim Gold Bangles</h5>
+<div class="rating">★★★☆☆</div>
+<p class="price">₹1,800</p>
+</div>
+
+<div class="product-card" data-category="bangle" data-collection="seasonal" data-id="bangle7" onclick="openProduct(this)">
+<img src="imagebangle7.jpg">
+<h5>Festival Kada</h5>
+<div class="rating">★★★★☆</div>
+<p class="price">₹2,700</p>
+</div>
+
+<div class="product-card" data-category="bangle" data-collection="wedding" data-id="bangle8" onclick="openProduct(this)">
+<img src="imagebangle8.jpg">
+<h5>Royal Bridal Bangles</h5>
+<div class="rating">★★★★★</div>
+<p class="price">₹5,200</p>
+</div>
+
+<div class="product-card" data-category="bangle" data-collection="wedding" data-id="bangle9" onclick="openProduct(this)">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_x2M7mGbJXpUWrmRXbYzY_cHS3HVYzFdMcw&s">
+  <h5>Gold Bangles</h5>
+  <div class="rating">★★★★★</div>
+  <p class="price">₹1,45,000</p>
+</div>
+
+<!-- ================== BRACELETS (8) ================== -->
+<div class="product-card" data-category="bracelet" data-collection="daily" data-id="bracelet1" onclick="openProduct(this)">
+<img src="imagebracelet1.webp">
+<h5>Elegant Gold Bracelet</h5>
+<div class="rating">★★★★★</div>
+<p class="price">₹1,400</p>
+</div>
+
+<div class="product-card" data-category="bracelet" data-collection="rose" data-id="bracelet2" onclick="openProduct(this)">
+<img src="imagebracelet2.webp">
+<h5>Rose Gold Bracelet</h5>
+<div class="rating">★★★★☆</div>
+<p class="price">₹1,800</p>
+</div>
+
+<div class="product-card" data-category="bracelet" data-collection="pearl" data-id="bracelet3" onclick="openProduct(this)">
+<img src="imagebracelet3.png">
+<h5>Pearl Charm Bracelet</h5>
+<div class="rating">★★★★★</div>
+<p class="price">₹2,300</p>
+</div>
+
+<div class="product-card" data-category="bracelet" data-collection="daily" data-id="bracelet4" onclick="openProduct(this)">
+<img src="imagebracelet4.webp">
+<h5>Minimal Gold Bracelet</h5>
+<div class="rating">★★★☆☆</div>
+<p class="price">₹1,100</p>
+</div>
+
+<div class="product-card" data-category="bracelet" data-collection="seasonal" data-id="bracelet5" onclick="openProduct(this)">
+<img src="imagebracelet5.webp">
+<h5>Festive Beaded Bracelet</h5>
+<div class="rating">★★★★☆</div>
+<p class="price">₹1,800</p>
+</div>
+
+<div class="product-card" data-category="bracelet" data-collection="wedding" data-id="bracelet6" onclick="openProduct(this)">
+<img src="imagebracelet6.webp">
+<h5>Bridal Gold Bracelet</h5>
+<div class="rating">★★★★★</div>
+<p class="price">₹3,200</p>
+</div>
+
+<div class="product-card" data-category="bracelet" data-collection="rose" data-id="bracelet7" onclick="openProduct(this)">
+<img src="imagebracelet7.jpg">
+<h5>Rose Petal Bracelet</h5>
+<div class="rating">★★★★☆</div>
+<p class="price">₹2,200</p>
+</div>
+
+<div class="product-card" data-category="bracelet" data-collection="pearl" data-id="bracelet8" onclick="openProduct(this)">
+<img src="imagebracelet8.webp">
+<h5>Pearl Strand Bracelet</h5>
+<div class="rating">★★★★★</div>
+<p class="price">₹2,600</p>
+</div>
+
+<div class="product-card" data-category="bracelet" data-collection="daily" data-id="bracelet9" onclick="openProduct(this)">
+  <img src="gold bracelet.webp">
+  <h5>Gold Bracelet</h5>
+  <div class="rating">★★★★☆</div>
+  <p class="price">₹18,750</p>
+</div>
+
+</div>
+</section>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-left">
+      <img src="1.png">
+      <span>Night Shine</span>
+    </div>
+    <div class="footer-right">
+      <p>📞 +91 98765 43210</p>
+      <p>✉ support@nightshine.com</p>
+    </div>
+  </div>
+</footer>
+
+
+
+<script>
+const products = document.querySelectorAll(".product-card");
+
+function filterCategory(cat){
+  products.forEach(p=>{
+    p.style.display = p.dataset.category===cat ? "block" : "none";
+  });
+}
+
+function filterCollection(col){
+  products.forEach(p=>{
+    p.style.display = p.dataset.collection===col ? "block" : "none";
+  });
+}
+
+function toggleCollection(){
+  const menu = document.getElementById("collectionMenu");
+  menu.style.display = menu.style.display==="block" ? "none" : "block";
+}
+
+document.getElementById("searchInput").addEventListener("input", e=>{
+  const val = e.target.value.toLowerCase();
+  products.forEach(p=>{
+    p.style.display = p.dataset.id.toLowerCase().includes(val) || p.innerText.toLowerCase().includes(val) ? "block" : "none";
+  });
+});
+
+function openProduct(card){
+  const id = card.dataset.id;
+  window.location.href = `product.html?id=${id}`;
+}
+</script>
+
+</body>
+</html>
+<script>
+function getProductData(btn){
+  const card = btn.closest(".product-card");
+  return {
+    id: card.dataset.id,
+    name: card.dataset.name,
+    price: Number(card.dataset.price),
+    image: card.dataset.image
+  };
+}
+
+function addToCart(e,btn){
+  e.stopPropagation();
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const product = getProductData(btn);
+
+  if(!cart.find(p=>p.id===product.id)){
+    cart.push(product);
+    localStorage.setItem("cart",JSON.stringify(cart));
+    alert("Added to Cart");
+  }
+}
+
+function addToWishlist(e,btn){
+  e.stopPropagation();
+  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+  const product = getProductData(btn);
+
+  if(!wishlist.find(p=>p.id===product.id)){
+    wishlist.push(product);
+    localStorage.setItem("wishlist",JSON.stringify(wishlist));
+    alert("Added to Wishlist");
+  }
+}
+</script>
+<script>
+function getQueryParam(param){
+  const params = new URLSearchParams(window.location.search);
+  return params.get(param);
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  const collection = getQueryParam("collection");
+  if(collection){
+    filterCollection(collection);
+  }
+});
+</script>

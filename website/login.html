@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Night Shine</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+  <div class="auth-wrapper">
+    <div class="frame">
+      <h1 class="login">Login</h1>
+
+      <form action="home.html" method="post">
+        <div class="email">
+          <input 
+            type="email" 
+            name="email" 
+            placeholder="Enter your email (user@example.com)" 
+            required 
+          >
+        </div>
+
+        <div class="password">
+          <input 
+            type="password" 
+            name="password" 
+            placeholder="Password" 
+            required
+          >
+        </div>
+
+        <div class="remember_forgot">
+          <label class="remember">
+            <input type="checkbox" name="remember">
+            Remember Me
+          </label>
+
+          <div class="forgot">
+            <a href="forgot-password.html" >Forgot password?</a>
+          </div>
+        </div>
+
+        <button type="submit" class="log">Login</button>
+      </form>
+
+      <div class="reg">
+        Don’t have an account?
+        <a href="Sign Up.html">Register</a>
+      </div>
+    </div>
+  </div>
+  <div id="toast"></div>
+
+</body>
+</html>
+<script>
+/* ================= TOAST ================= */
+const toast = document.getElementById("toast");
+
+function showToast(message, type = "success") {
+  toast.textContent = message;
+  toast.className = "";
+  toast.classList.add(type === "success" ? "toast-success" : "toast-error");
+  toast.classList.add("show");
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3000);
+}
+
+/* ================= LOGIN LOGIC ================= */
+document.querySelector("form").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const email = document.querySelector("input[type='email']").value.trim();
+  const password = document.querySelector("input[type='password']").value.trim();
+  const remember = document.querySelector("input[type='checkbox']").checked;
+
+  /* ================= BASIC VALIDATION ================= */
+  if (!email || !password) {
+    showToast("Please enter both email and password", "error");
+    return;
+  }
+
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if (!emailRegex.test(email)) {
+    showToast("Invalid email format (example: user@gmail.com)", "error");
+    return;
+  }
+
+  /* ================= FETCH USERS ================= */
+  const users = JSON.parse(localStorage.getItem("nightshine_users")) || [];
+
+  const user = users.find(u => u.email === email);
+
+  if (!user) {
+    showToast("Account not found. Please sign up.", "error");
+    return;
+  }
+
+  /* ================= PASSWORD CHECK ================= */
+  if (user.password && user.password !== password) {
+    showToast("Incorrect password", "error");
+    return;
+  }
+
+  /* ================= LOGIN SUCCESS ================= */
+  localStorage.setItem(
+    remember ? "nightshine_current_user" : "nightshine_session_user",
+    JSON.stringify(user)
+  );
+
+  showToast("Login successful. Welcome back!");
+
+  setTimeout(() => {
+    window.location.href = "home.html";
+  }, 1500);
+});
+</script>
+

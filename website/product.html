@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product | Night Shine</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="product.css">
+</head>
+
+<body>
+
+<header>
+  <div class="nav-bar">
+    <a href="home.html" class="logo-left">
+      <img src="1.png" alt="logo">
+      <span class="logo-text">Night Shine</span>
+    </a>
+
+    <nav class="nav-right">
+  <a href="home.html" title="Home">
+    <i class="fa-solid fa-house"></i>
+  </a>
+  <a href="shop.html" title="Shop">
+    <i class="fa-solid fa-store"></i>
+  </a>
+  <a href="blog.html" title="Blog">
+    <i class="fa-solid fa-pen-nib"></i>
+  </a>
+  <a href="contact.html" title="Contact">
+    <i class="fa-solid fa-envelope"></i>
+  </a>
+</nav>
+
+  </div>
+</header>
+
+<main class="product-page">
+  <div class="product-container">
+
+    <!-- BACK BUTTON INSIDE CONTAINER -->
+    <button class="back-btn" onclick="history.back()">&#8592;</button>
+
+    <!-- IMAGE -->
+    <div class="product-image">
+      <span class="heart" onclick="addToWishlist()">♥</span>
+      <img id="productImg">
+    </div>
+
+    <!-- DETAILS FRAME -->
+    <div class="product-details">
+
+      <h1 id="productName"></h1>
+      <div class="rating">★★★★★</div>
+
+      <p class="price" id="productPrice"></p>
+
+      <!-- QTY AFTER PRICE -->
+      <div class="qty-box">
+        <button onclick="changeQty(-1)">−</button>
+        <input id="qty" type="number" value="1" min="1" max="100">
+        <button onclick="changeQty(1)">+</button>
+      </div>
+
+      <p class="desc" id="productDesc"></p>
+
+      <ul class="specs">
+        <li>✔ Premium Finish</li>
+        <li>✔ Skin Friendly</li>
+        <li>✔ Tarnish Resistant</li>
+        <li>✔ Perfect for Gifting</li>
+      </ul>
+
+      <!-- ACTION BUTTONS -->
+      <div class="action-row">
+        <button class="cart-btn" onclick="addToCart()">Add to Cart</button>
+        <button class="buy-btn" onclick="buyNow()">Buy Now</button>
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-left">
+      <img src="1.png">
+      <span>Night Shine</span>
+    </div>
+    <div class="footer-right">
+      <p>📞 +91 98765 43210</p>
+      <p>✉ support@nightshine.com</p>
+    </div>
+  </div>
+</footer>
+
+<div id="toast"></div>
+
+<script>
+function showToast(msg,type="success"){
+  const t=document.getElementById("toast");
+  t.textContent=msg;
+  t.className="show "+type;
+  setTimeout(()=>t.className="",3000);
+}
+
+const products={
+ring1:{id:"ring1",name:"Royal Wedding Ring",price:2500,desc:"Luxury wedding ring.",image:"imagering1.jpg"},
+ring2:{id:"ring2",name:"Rose Gold Ring",price:1900,desc:"Elegant rose gold ring.",image:"imagering2.webp"},
+ring3:{id:"ring3",name:"Classic Gold Band",price:1700,desc:"Minimal gold band.",image:"imagering3.jpg"},
+ring4:{id:"ring4",name:"Diamond Cut Ring",price:3200,desc:"Diamond cut wedding ring.",image:"imagering4.jpg"},
+ring5:{id:"ring5",name:"Vintage Ring",price:2800,desc:"Vintage inspired ring.",image:"imagering5.jpg"},
+ring6:{id:"ring6",name:"Pearl Crown Ring",price:2300,desc:"Pearl embedded ring.",image:"imagering6.jpg"},
+ring7:{id:"ring7",name:"Engagement Ring",price:3500,desc:"Perfect engagement ring.",image:"imagering7.jpg"},
+ring8:{id:"ring8",name:"Modern Gold Ring",price:2100,desc:"Modern gold design.",image:"imagering8.webp"},
+ring9:{id:"ring9",name:"Diamond Ring",price:48999,desc:"Premium diamond ring.",image:"ring.webp"},
+
+necklace1:{id:"necklace1",name:"Bridal Necklace",price:6500,desc:"Heavy bridal necklace.",image:"imagenecklace1.webp"},
+necklace2:{id:"necklace2",name:"Pearl Necklace",price:3200,desc:"Elegant pearl necklace.",image:"imagenecklace2.jpg"},
+necklace3:{id:"necklace3",name:"Gold Chain",price:1900,desc:"Daily wear gold chain.",image:"imagenecklace3.webp"},
+necklace4:{id:"necklace4",name:"Wedding Choker",price:4800,desc:"Traditional choker.",image:"imagenecklace4.jpg"},
+necklace5:{id:"necklace5",name:"Rose Pendant",price:2100,desc:"Rose gold pendant.",image:"imagenecklace5.jpg"},
+necklace6:{id:"necklace6",name:"Antique Necklace",price:3900,desc:"Antique finish necklace.",image:"imagenecklace6.webp"},
+necklace7:{id:"necklace7",name:"Layered Necklace",price:2700,desc:"Layered gold necklace.",image:"imagenecklace7.webp"},
+necklace8:{id:"necklace8",name:"Temple Necklace",price:5200,desc:"Temple jewelry style.",image:"imagenecklace8.jpg"},
+necklace9:{id:"necklace9",name:"Necklace Set",price:112000,desc:"Luxury bridal necklace set.",image:"necklace set.webp"},
+necklace10:{id:"necklace10",name:"Diamond Pendant",price:35999,desc:"Elegant diamond pendant.",image:"https://kritjewels.com/wp-content/uploads/2023/10/IMG_20230904_231920-scaled.jpg"},
+necklace11:{id:"necklace11",name:"Daily Wear Chain",price:12999,desc:"Lightweight gold chain.",image:"https://m.media-amazon.com/images/I/61FVZxlMlTL._AC_UY1100_.jpg"},
+
+earring1:{id:"earring1",name:"Pearl Drops",price:1200,desc:"Pearl drop earrings.",image:"imageearring1.webp"},
+earring2:{id:"earring2",name:"Gold Studs",price:850,desc:"Daily wear studs.",image:"imageearring2.jpeg"},
+earring3:{id:"earring3",name:"Rose Hoops",price:1600,desc:"Rose gold hoops.",image:"imageearring3.webp"},
+earring4:{id:"earring4",name:"Chandbali",price:2900,desc:"Bridal chandbali.",image:"imageearring4.webp"},
+earring5:{id:"earring5",name:"Minimal Studs",price:750,desc:"Minimal studs.",image:"imageearring5.webp"},
+earring6:{id:"earring6",name:"Designer Earrings",price:2200,desc:"Designer collection.",image:"imageearring6.webp"},
+earring7:{id:"earring7",name:"Gold Jhumka",price:2600,desc:"Traditional jhumkas.",image:"imageearring7.jpg"},
+earring8:{id:"earring8",name:"Pearl Studs",price:1100,desc:"Pearl stud earrings.",image:"imageearring8.webp"},
+earring9:{id:"earring9",name:"Gold Earrings",price:29499,desc:"Traditional gold earrings.",image:"gold earring.webp"},
+earring10:{id:"earring10",name:"Stud Earrings",price:9499,desc:"Comfortable daily studs.",image:"https://img.tatacliq.com/images/i13/437Wx649H/MP000000019206250_437Wx649H_202309131427371.jpeg"},
+
+bangle1:{id:"bangle1",name:"Festival Bangles",price:3200,desc:"Festival wear bangles.",image:"imagebangle1.jpg"},
+bangle2:{id:"bangle2",name:"Bridal Kada",price:4800,desc:"Bridal kada set.",image:"imagebangle2.webp"},
+bangle3:{id:"bangle3",name:"Simple Bangles",price:2100,desc:"Simple gold bangles.",image:"imagebangle3.webp"},
+bangle4:{id:"bangle4",name:"Rose Bangles",price:2900,desc:"Rose gold bangles.",image:"imagebangle4.jpg"},
+bangle5:{id:"bangle5",name:"Pearl Bangles",price:3600,desc:"Pearl embedded.",image:"imagebangle5.webp"},
+bangle6:{id:"bangle6",name:"Slim Bangles",price:1800,desc:"Slim daily bangles.",image:"imagebangle6.webp"},
+bangle7:{id:"bangle7",name:"Festival Kada",price:2700,desc:"Festival kada.",image:"imagebangle7.jpg"},
+bangle8:{id:"bangle8",name:"Royal Bangles",price:5200,desc:"Royal bridal set.",image:"imagebangle8.jpg"},
+bangle9:{id:"bangle9",name:"Gold Bangles",price:145000,desc:"Heavy gold bangles.",image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_x2M7mGbJXpUWrmRXbYzY_cHS3HVYzFdMcw&s"},
+
+bracelet1:{id:"bracelet1",name:"Gold Bracelet",price:1400,desc:"Elegant gold bracelet.",image:"imagebracelet1.webp"},
+bracelet2:{id:"bracelet2",name:"Rose Bracelet",price:1800,desc:"Rose gold bracelet.",image:"imagebracelet2.webp"},
+bracelet3:{id:"bracelet3",name:"Pearl Bracelet",price:2300,desc:"Pearl charm bracelet.",image:"imagebracelet3.png"},
+bracelet4:{id:"bracelet4",name:"Minimal Bracelet",price:1100,desc:"Minimal design.",image:"imagebracelet4.webp"},
+bracelet5:{id:"bracelet5",name:"Festive Bracelet",price:1800,desc:"Festive beads.",image:"imagebracelet5.webp"},
+bracelet6:{id:"bracelet6",name:"Bridal Bracelet",price:3200,desc:"Bridal gold bracelet.",image:"imagebracelet6.webp"},
+bracelet7:{id:"bracelet7",name:"Rose Petal Bracelet",price:2200,desc:"Rose petal style.",image:"imagebracelet7.jpg"},
+bracelet8:{id:"bracelet8",name:"Pearl Strand",price:2600,desc:"Pearl strand bracelet.",image:"imagebracelet8.webp"},
+bracelet9:{id:"bracelet9",name:"Gold Bracelet",price:18750,desc:"Premium finish bracelet.",image:"gold bracelet.webp"}
+};
+
+const pid=new URLSearchParams(location.search).get("id");
+const p=products[pid];
+if(p){
+productName.textContent=p.name;
+productPrice.textContent="₹ "+p.price;
+productDesc.textContent=p.desc;
+productImg.src=p.image;
+}
+
+function changeQty(v){
+const q=document.getElementById("qty");
+let val=parseInt(q.value)+v;
+if(val<1) val=1;
+if(val>100) val=100;
+q.value=val;
+}
+/* ---------- ADD TO CART ---------- */
+function addToCart(){
+  const qty = parseInt(document.getElementById("qty").value);
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  const found = cart.find(item => item.id === p.id);
+
+  if(found){
+    found.qty += qty;
+    showToast("Quantity updated in Cart");
+  } else {
+    cart.push({ ...p, qty });
+    showToast("Added to Cart");
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+/* ---------- BUY NOW ---------- */
+function buyNow(){
+  addToCart();
+  location.href = "cart.html";
+}
+
+/* ---------- ADD TO WISHLIST ---------- */
+function addToWishlist(){
+  const qty = parseInt(document.getElementById("qty").value);
+  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+  const found = wishlist.find(item => item.id === p.id);
+
+  if(found){
+    found.qty += qty;
+    showToast("Quantity updated in Wishlist");
+  } else {
+    wishlist.push({ ...p, qty });
+    showToast("Added to Wishlist");
+  }
+
+  localStorage.setItem("wishlist", JSON.stringify(wishlist));
+}
+
+
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cart | Night Shine</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="cart.css">
+</head>
+
+<body>
+
+<header>
+  <div class="nav-bar">
+    <a href="home.html" class="logo-left">
+      <img src="1.png">
+      <span class="logo-text">Night Shine</span>
+    </a>
+
+    <nav class="nav-right">
+      <a href="home.html"><i class="fa-solid fa-house"></i></a>
+      <a href="shop.html"><i class="fa-solid fa-store"></i></a>
+      <a href="blog.html"><i class="fa-solid fa-pen-nib"></i></a>
+      <a href="contact.html"><i class="fa-solid fa-envelope"></i></a>
+    </nav>
+  </div>
+</header>
+
+<main class="cart-page">
+
+  <!-- BACK BUTTON -->
+  <button class="back-btn" onclick="history.back()">&#8592;</button>
+
+  <div class="tabs">
+    <button onclick="showCart()">Cart</button>
+    <button onclick="showWishlist()">Wishlist</button>
+  </div>
+
+  <section id="cart" class="items"></section>
+  <section id="wishlist" class="items"></section>
+
+</main>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-left">
+      <img src="1.png">
+      <span>Night Shine</span>
+    </div>
+    <div class="footer-right">
+      <p>📞 +91 98765 43210</p>
+      <p>✉ support@nightshine.com</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const cartBox = document.getElementById("cart");
+const wishlistBox = document.getElementById("wishlist");
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+function showCart(){
+  wishlistBox.style.display="none";
+  cartBox.style.display="flex";
+  renderCart();
+}
+
+function showWishlist(){
+  cartBox.style.display="none";
+  wishlistBox.style.display="flex";
+  renderWishlist();
+}
+
+/* ---------- CART ---------- */
+function renderCart(){
+  cartBox.innerHTML="";
+  let total=0;
+
+  if(cart.length===0){
+    cartBox.innerHTML="<p class='empty'>Your cart is empty</p>";
+    return;
+  }
+
+  cart.forEach((item,i)=>{
+    const itemTotal = item.price * item.qty;
+    total += itemTotal;
+
+    cartBox.innerHTML+=`
+    <div class="item">
+      <div class="img-box">
+        <span class="heart" onclick="moveToWishlist(${i})">♥</span>
+        <img src="${item.image}">
+      </div>
+
+      <div class="info">
+        <h3>${item.name}</h3>
+        <p>₹ ${item.price}</p>
+
+        <div class="qty-box">
+          <button onclick="updateQty(cart,${i},-1)">−</button>
+          <span>${item.qty}</span>
+          <button onclick="updateQty(cart,${i},1)">+</button>
+        </div>
+
+        <strong>₹ ${itemTotal}</strong>
+      </div>
+
+      <button class="remove" onclick="removeCart(${i})">✕</button>
+    </div>`;
+  });
+
+  cartBox.innerHTML+=`
+  <div class="total">
+    <span>Total</span>
+    <strong>₹ ${total}</strong>
+  </div>
+
+  <button class="buy-btn" onclick="proceedPayment()">Proceed to Payment</button>`;
+}
+
+/* ---------- WISHLIST ---------- */
+function renderWishlist(){
+  wishlistBox.innerHTML="";
+
+  if(wishlist.length===0){
+    wishlistBox.innerHTML="<p class='empty'>Wishlist is empty</p>";
+    return;
+  }
+
+  wishlist.forEach((item,i)=>{
+    wishlistBox.innerHTML+=`
+    <div class="item">
+      <div class="img-box">
+        <img src="${item.image}">
+      </div>
+
+      <div class="info">
+        <h3>${item.name}</h3>
+        <p>₹ ${item.price}</p>
+
+        <div class="qty-box">
+          <button onclick="updateQty(wishlist,${i},-1)">−</button>
+          <span>${item.qty}</span>
+          <button onclick="updateQty(wishlist,${i},1)">+</button>
+        </div>
+
+        <button class="add-cart-btn" onclick="moveToCart(${i})">
+          Add to Cart
+        </button>
+      </div>
+
+      <button class="remove" onclick="removeWishlist(${i})">✕</button>
+    </div>`;
+  });
+}
+
+/* ---------- MOVE LOGIC ---------- */
+function moveToWishlist(i){
+  wishlist.push(cart[i]);
+  cart.splice(i,1);
+  sync();
+  renderCart();
+}
+
+function moveToCart(i){
+  cart.push(wishlist[i]);
+  wishlist.splice(i,1);
+  sync();
+  renderWishlist();
+}
+
+function sync(){
+  localStorage.setItem("cart",JSON.stringify(cart));
+  localStorage.setItem("wishlist",JSON.stringify(wishlist));
+}
+
+/* ---------- QTY ---------- */
+function updateQty(list,i,change){
+  list[i].qty += change;
+  if(list[i].qty < 1) list[i].qty = 1;
+  sync();
+  list === cart ? renderCart() : renderWishlist();
+}
+
+/* ---------- REMOVE ---------- */
+function removeCart(i){
+  cart.splice(i,1);
+  sync();
+  renderCart();
+}
+function removeWishlist(i){
+  wishlist.splice(i,1);
+  sync();
+  renderWishlist();
+}
+
+/* ---------- PAYMENT ---------- */
+function proceedPayment(){
+  const total = cart.reduce((s,i)=>s+i.price*i.qty,0);
+  localStorage.setItem("paymentTotal",total);
+  location.href="payment.html";
+}
+
+showCart();
+</script>
+
+</body>
+</html>
